@@ -18,6 +18,7 @@ export default function Home() {
       <div className="w-md shadow-xl mt-20 mb-auto p-4 rounded-2xl">
         <h1 className="text-2xl font-bold text-center">商品テーブル</h1>
         <ProductTable products={products} />
+        <a href="/login" className="text-blue-500">テスト用ログインリンク</a>
       </div>
     </div>
   )

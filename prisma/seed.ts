@@ -9,8 +9,14 @@ async function main() {
             { name: "バナナ", price: 80, stock: 5 },
             { name: "ミカン", price: 120, stock: 0 },
             { name: "ブドウ", price: 500, stock: 30 },
-        ]
-    })
+        ],
+    });
+    await prisma.employee.createMany({
+        data:[
+            { empNo: "0001", password: "admin123", name: "管理者", role: "ADMIN" },
+            { empNo: "0002", password: "staff123", name: "一般社員", role: "EMPLOYEE" },
+        ],
+    });
 }
 
 main()
