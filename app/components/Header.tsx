@@ -1,13 +1,16 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react"
+import Link from "next/link";
 
 export default function Header() {
     const { data: session } = useSession();
 
     return (
         <header className="sticky top-0 z-99 bg-white shadow px-6 py-3 flex items-center justify-between">
-            <h1 className="font-bold text-lg">在庫管理システム</h1>
+            <Link href="/">
+                <h1 className="font-bold text-lg">在庫管理システム</h1>
+            </Link>
             <div className="flex items-center gap-6 text-sm">
                 <span>社員番号：{session?.user.empNo}</span>
                 <span>氏名：{session?.user.name}</span>
