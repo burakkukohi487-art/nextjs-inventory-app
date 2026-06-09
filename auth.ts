@@ -42,4 +42,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return session;
         },
     },
+    session: {
+        maxAge: 60 * 60 * 8,
+    },
 });
