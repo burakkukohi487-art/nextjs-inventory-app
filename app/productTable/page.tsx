@@ -28,6 +28,12 @@ export default function Home() {
 
   if (status === "loading" || status === "unauthenticated") return <div className="bg-white min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
 
+  const load = async () => {
+    await fetch("/api/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }
+
   return (
     <div className="min-h-screen bg-gray-100 text-black">
       <Header />
@@ -37,7 +43,7 @@ export default function Home() {
           <Link href="/" className="inline-flex items-center gap-1 text-md underline text-blue-500 hover:text-blue-700 transition-colors">
             ホームへ戻る
           </Link>
-          <ProductTable products={products} />
+          <ProductTable products={products} onDelete={load} />
         </div>
       </div>
     </div>

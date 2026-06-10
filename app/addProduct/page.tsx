@@ -52,7 +52,7 @@ export default function AddProduct() {
                         onChange={(e) => setName(e.target.value)}
                         onKeyDown={(e) => e.key === "Enter" && handleAdd()}
                         placeholder="商品名"
-                        className="w-full border border-gray-300 outline-none p-2 my-1 rounded-md"
+                        className="w-full border border-gray-300 outline-none mt-4 p-2 my-1 rounded-md"
                     />
                     <input
                         type="number"
@@ -70,12 +70,14 @@ export default function AddProduct() {
                         placeholder="在庫"
                         className="w-full border border-gray-300 outline-none p-2 my-1 rounded-md"
                     />
-                    <button
-                        onClick={handleAdd}
-                        className="bg-blue-400 text-white py-1 px-3 rounded-md hover:bg-blue-500 cursor-pointer transition-colors"
-                    >
-                        登録
-                    </button>
+                    <div className="flex justify-center">
+                        <button
+                            onClick={handleAdd}
+                            className="bg-blue-400 text-white mt-4 py-1 px-3 rounded-md hover:bg-blue-500 cursor-pointer transition-colors"
+                        >
+                            登録
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
