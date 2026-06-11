@@ -48,15 +48,15 @@ export default function Home() {
             href="/"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md transition-shadow border border-gray-200"
           >
-            <p className="font-bold">出荷登録</p>
-            <p className="text-sm text-gray-500">出荷情報を登録する</p>
+            <p className="font-bold">搬入登録</p>
+            <p className="text-sm text-gray-500">搬入情報を登録する</p>
           </Link>
           <Link
             href="/"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md transition-shadow border border-gray-200"
           >
-            <p className="font-bold">搬入登録</p>
-            <p className="text-sm text-gray-500">搬入情報を登録する</p>
+            <p className="font-bold">出荷登録</p>
+            <p className="text-sm text-gray-500">出荷情報を登録する</p>
           </Link>
           {role === "ADMIN" &&
             <Link

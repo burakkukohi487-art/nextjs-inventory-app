@@ -68,7 +68,7 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
                 <div className="w-md shadow-xl mt-20 mb-auto p-4 rounded-2xl">
 
                     <h1 className="text-2xl font-bold text-center">商品テーブル</h1>
-                    <Link href="/productTable" className="inline-flex items-center gap-1 text-md underline text-blue-500 hover:text-blue-700 transition-colors mb-2">
+                    <Link href="/productTable" className="inline-flex items-center gap-1 text-md underline text-blue-500 hover:text-blue-700 transition-colors my-2">
                         一覧へ戻る
                     </Link>
                     <br />
@@ -83,7 +83,7 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
                                 onChange={(e) => setName(e.target.value)}
                                 onKeyDown={(e) => e.key === "Enter" && handleEdit()}
                                 placeholder="商品名"
-                                className="w-full border border-gray-300 outline-none p-2 mb-2 rounded-md"
+                                className="w-full border border-gray-300 outline-none p-2 my-2 rounded-md"
                             />
                             <span>価格</span>
                             <input
@@ -93,7 +93,7 @@ export default function EditProduct({ params }: { params: Promise<{ id: string }
                                 onKeyDown={(e) => e.key === "Enter" && handleEdit()}
                                 min={1}
                                 placeholder="価格"
-                                className="w-full border border-gray-300 outline-none p-2 mb-2 rounded-md"
+                                className="w-full border border-gray-300 outline-none p-2 my-2 rounded-md"
                             />
                             <span>在庫</span>
                             <input

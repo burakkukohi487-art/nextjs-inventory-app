@@ -18,7 +18,7 @@ export async function POST(req: Request) {
         where: { empNo: parsed.data.empNo }
     });
     if (exsting) {
-        return NextResponse.json({ error: "この社員番号は既に使われています" }, { status: 400 });
+        return NextResponse.json([{ message: "この社員番号は既に使われています" }], { status: 409 });
     }
 
     const hashedPass = await bcrypt.hash(parsed.data.password, 10);

@@ -26,9 +26,6 @@ export default function AddProduct() {
             }),
         }).then(async (res) => {
             if (res.ok) {
-                setName("");
-                setPrice("");
-                setStock("");
                 router.push("/productTable");
                 alert("登録が完了しました")
             } else {
