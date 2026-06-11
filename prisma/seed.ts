@@ -1,6 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
 
 const prisma = new PrismaClient();
+
+const adminPass = await bcrypt.hash("admin123", 10);
+const staffPass = await bcrypt.hash("staff123", 10);
 
 async function main() {
     await prisma.product.createMany({
@@ -10,12 +14,17 @@ async function main() {
             { name: "ミカン", price: 120, stock: 0 },
             { name: "ブドウ", price: 500, stock: 30 },
         ],
+        skipDuplicates: true,
     });
-    await prisma.employee.createMany({
-        data:[
-            { empNo: "0001", password: "admin123", name: "管理者", role: "ADMIN" },
-            { empNo: "0002", password: "staff123", name: "一般社員", role: "EMPLOYEE" },
-        ],
+    await prisma.employee.upsert({
+        where: { empNo: "0001" },
+        update: { password: adminPass },
+        create: { empNo: "0001", password: adminPass, name: "管理者", role: "ADMIN" },
+    });
+    await prisma.employee.upsert({
+        where: { empNo: "0002" },
+        update: { password: staffPass },
+        create: { empNo: "0002", password: staffPass, name: "一般社員", role: "EMPLOYEE" },
     });
 }
 
