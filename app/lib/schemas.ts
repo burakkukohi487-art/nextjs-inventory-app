@@ -7,5 +7,15 @@ export const ProductSchema = z.object({
     stock: z.number().int().min(0, "在庫数は0以上にしてください"),
 });
 
+export const UserSchema = z.object({
+    empNo: z.string().min(1, "社員番号は必須です"),
+    password: z.string().min(1, "パスワードは必須です"),
+    name: z.string().min(1, "社員名は必須です"),
+    role: z.enum(["ADMIN", "EMPLOYEE"], {   // enumは第二引数に直接文字列を入れられない
+        message: "役職は社員か管理者のどちらかを選択してください"
+    }),
+})
+
 // バリデーションの型
 export type ProductInput = z.infer<typeof ProductSchema>;
+export type UserInput = z.infer<typeof UserSchema>;

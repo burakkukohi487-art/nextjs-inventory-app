@@ -10,7 +10,7 @@ export default function AddProduct() {
     const [price, setPrice] = useState("");
     const [stock, setStock] = useState("");
 
-    const [error, setError] = useState("");
+    const [error, setError] = useState<string[]>([]);
 
     const router = useRouter();
 
@@ -24,7 +24,7 @@ export default function AddProduct() {
                 price: Number(price),
                 stock: Number(stock),
             }),
-        }).then((res) => {
+        }).then(async (res) => {
             if (res.ok) {
                 setName("");
                 setPrice("");
@@ -32,7 +32,8 @@ export default function AddProduct() {
                 router.push("/productTable");
                 alert("登録が完了しました")
             } else {
-                setError("登録に失敗しました");
+                const data = await res.json();
+                setError(data.map((issue: { message: string}) => issue.message));
             }
         });
     };
@@ -46,7 +47,10 @@ export default function AddProduct() {
                     <Link href="/" className="inline-flex items-center gap-1 text-md underline text-blue-500 hover:text-blue-700 transition-colors">
                         ホームへ戻る
                     </Link>
-                    {error && <span className="text-red-500">{error}</span>}
+                    <br />
+                    {error.map((err, i) => (
+                        <span key={i} className="text-red-500 text-sm block">{err}</span>
+                    ))}
                     <input
                         type="text"
                         onChange={(e) => setName(e.target.value)}
