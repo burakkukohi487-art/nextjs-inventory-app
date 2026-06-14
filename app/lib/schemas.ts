@@ -14,8 +14,14 @@ export const UserSchema = z.object({
     role: z.enum(["ADMIN", "EMPLOYEE"], {   // enumは第二引数に直接文字列を入れられない
         message: "役職は社員か管理者のどちらかを選択してください"
     }),
-})
+});
+
+export const ArrivalSchema = z.object({
+    productId: z.number().int(),
+    quantity: z.number().int().min(1, "搬入数は1以上にしてください").max(999999, "搬入数が大きすぎます"),
+});
 
 // バリデーションの型
 export type ProductInput = z.infer<typeof ProductSchema>;
 export type UserInput = z.infer<typeof UserSchema>;
+export type ArrivalInput = z.infer<typeof ArrivalSchema>;

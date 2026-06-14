@@ -23,8 +23,9 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    if (status === "loading") return;
     if (session === null) { router.push("/login") };
-  }, [session, router])
+  }, [status, session, router])
 
   if (status === "loading" || status === "unauthenticated") return <div className="bg-white min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
 

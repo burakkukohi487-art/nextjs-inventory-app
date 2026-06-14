@@ -19,6 +19,7 @@ model Product {
   stock     Int      @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  arrivals Arrival[]
 }
 
 model Employee {
@@ -33,4 +34,12 @@ model Employee {
 enum Role {
   ADMIN
   EMPLOYEE
+}
+
+model Arrival {
+  id Int @id @default(autoincrement())
+  productId Int
+  quantity Int
+  createdAt DateTime @default(now())
+  product Product @relation(fields: [productId], references: [id])
 }

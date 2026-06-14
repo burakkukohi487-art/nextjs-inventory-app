@@ -19,8 +19,9 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    if (status === "loading") return;
     if (session === null) { router.push("/login") };
-  }, [session, router])
+  }, [status, session, router])
 
   if (status === "loading" || status === "unauthenticated") return <div className="bg-white min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
 
@@ -45,7 +46,7 @@ export default function Home() {
             <p className="text-sm text-gray-500">新しく商品を登録する</p>
           </Link>
           <Link
-            href="/"
+            href="/arrival"
             className="block p-4 bg-white rounded-xl shadow hover:shadow-md transition-shadow border border-gray-200"
           >
             <p className="font-bold">搬入登録</p>

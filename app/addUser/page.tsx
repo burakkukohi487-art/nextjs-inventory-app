@@ -46,8 +46,9 @@ export default function AddUser() {
     };
     
     useEffect(() => {
+        if (status === "loading") return;
         if (nowRole != "ADMIN") { router.push("/") };
-    }, [nowRole, router])
+    }, [status, nowRole, router])
 
     if (status === "loading" || status === "unauthenticated") return <div className="bg-white min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
 
