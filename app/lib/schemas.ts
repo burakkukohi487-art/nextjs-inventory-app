@@ -21,7 +21,13 @@ export const ArrivalSchema = z.object({
     quantity: z.number().int().min(1, "搬入数は1以上にしてください").max(999999, "搬入数が大きすぎます"),
 });
 
+export const ShipmentSchema = z.object({
+    productId: z.number().int(),
+    quantity: z.number().int().min(1, "出荷数は1以上にしてください").max(999999, "出荷数が大きすぎます"),
+});
+
 // バリデーションの型
 export type ProductInput = z.infer<typeof ProductSchema>;
 export type UserInput = z.infer<typeof UserSchema>;
 export type ArrivalInput = z.infer<typeof ArrivalSchema>;
+export type ShipmentInput = z.infer<typeof ShipmentSchema>;

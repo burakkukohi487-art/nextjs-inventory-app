@@ -11,7 +11,8 @@ export async function POST(req: Request) {
         return NextResponse.json(result.error.issues, { status:400 });
     }
 
-    // $transactionを使って、搬入記録と在庫増加のどちらかが失敗したときに両方キャンセルさせる
+    // 搬入記録と在庫増加のどちらかが失敗したときに両方キャンセルさせる
+    try {
     await prisma.$transaction([
         prisma.arrival.create({ data: result.data }),
         prisma.product.update({
@@ -21,4 +22,7 @@ export async function POST(req: Request) {
     ]);
 
     return NextResponse.json({ success: true });
+} catch {
+    return NextResponse.json([{ message: "登録が失敗しました" }], { status: 500 })
+}
 };

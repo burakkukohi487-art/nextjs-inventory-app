@@ -1,12 +1,12 @@
 import Header from "../components/Header";
 import StockForm from "../components/StockForm";
 
-export default function Arrival() {
+export default function Shipment() {
     return (
         <div className="min-h-screen bg-gray-100 text-black">
             <Header />
             <div className="flex justify-center">
-                <StockForm title="搬入登録" apiPath="/api/arrival" />
+                <StockForm title="出荷登録" apiPath="/api/shipment" />
             </div>
         </div>
     )

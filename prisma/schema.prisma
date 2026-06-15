@@ -20,6 +20,7 @@ model Product {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   arrivals Arrival[]
+  shipment Shipment[]
 }
 
 model Employee {
@@ -37,6 +38,14 @@ enum Role {
 }
 
 model Arrival {
+  id Int @id @default(autoincrement())
+  productId Int
+  quantity Int
+  createdAt DateTime @default(now())
+  product Product @relation(fields: [productId], references: [id])
+}
+
+model Shipment {
   id Int @id @default(autoincrement())
   productId Int
   quantity Int
