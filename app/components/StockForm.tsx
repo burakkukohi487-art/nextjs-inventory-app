@@ -17,6 +17,7 @@ export default function StockForm({ title, apiPath }: Props) {
     const [productId, setProductId] = useState("");
     const [quantity, setQuantity] = useState("");
     const [error, setError] = useState<string[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const { data: session, status } = useSession();
 
@@ -25,7 +26,10 @@ export default function StockForm({ title, apiPath }: Props) {
     useEffect(() => {
         fetch("/api/products")
             .then((res) => res.json())
-            .then((data) => { setProducts(data) })
+            .then((data) => {
+                setProducts(data)
+                setLoading(false);
+            })
     }, [])
 
     const handle = async () => {
@@ -55,14 +59,19 @@ export default function StockForm({ title, apiPath }: Props) {
         if (session === null) { router.push("/login") };
     }, [status, session, router])
 
-    if (status === "loading" || status === "unauthenticated") return <div className="bg-white min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
+    if (status === "loading" || status === "unauthenticated" || loading === true) return <div className="bg-white min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
 
     return (
         <div className="w-md shadow-xl mt-20 mb-auto p-4 rounded-2xl">
             <h1 className="text-2xl font-bold text-center">{title}</h1>
-            <Link href="/" className="inline-flex items-center gap-1 text-md underline text-blue-500 hover:text-blue-700 transition-colors">
-                ホームへ戻る
-            </Link>
+            <div className="flex justify-between">
+                <Link href="/" className="inline-flex items-center gap-1 text-md underline text-blue-500 hover:text-blue-700 transition-colors">
+                    ホームへ戻る
+                </Link>
+                <Link href="/history" className="inline-flex items-center gap-1 text-md underline text-blue-500 hover:text-blue-700 transition-colors">
+                    搬入・出荷履歴
+                </Link>
+            </div>
             <br />
             {error.map((err, i) => (
                 <span key={i} className="text-red-500 text-sm block">{err}</span>

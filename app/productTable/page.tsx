@@ -16,10 +16,15 @@ export default function Home() {
 
   const router = useRouter();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch("/api/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data))
+      .then((data) => {
+        setProducts(data)
+        setLoading(false);
+      })
   }, [])
 
   useEffect(() => {
@@ -27,7 +32,7 @@ export default function Home() {
     if (session === null) { router.push("/login") };
   }, [status, session, router])
 
-  if (status === "loading" || status === "unauthenticated") return <div className="bg-white min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
+  if (status === "loading" || status === "unauthenticated" || loading === true) return <div className="bg-white min-h-screen flex items-center justify-center"><LoadingSpinner /></div>;
 
   const load = async () => {
     await fetch("/api/products")
