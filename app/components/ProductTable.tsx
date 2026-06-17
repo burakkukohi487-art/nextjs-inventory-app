@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Product } from "../types/products"
 import { useRouter } from "next/navigation";
+import { AlertTriangle, Circle } from "lucide-react";
 
 type Props = {
     products: Product[];
@@ -46,7 +47,6 @@ export default function ProductTable({ products, onDelete }: Props) {
                         <th className="border border-gray-300">在庫数</th>
                         <th className="border border-gray-300"></th>
                         <th className="border border-gray-300"></th>
-
                     </tr>
                 </thead>
 
@@ -56,7 +56,18 @@ export default function ProductTable({ products, onDelete }: Props) {
                             <td className="border border-gray-300 text-center">{product.id}</td>
                             <td className="border border-gray-300">{product.name}</td>
                             <td className="border border-gray-300 text-right">{product.price}</td>
-                            <td className="border border-gray-300 text-right">{product.stock}</td>
+                            <td className="border border-gray-300 text-right">
+                                <div className="flex items-center">
+                                    {product.stock === 0
+                                        ? <span title="在庫切れ"><AlertTriangle size={18} className="text-gray-500 fill-red-500" /></span>
+                                        : product.stock < 31
+                                            ? <span title="在庫少(30以下)"><Circle size={18} className="text-gray-500 fill-yellow-400" /></span>
+                                            : null}
+                                    <span className="ml-auto">
+                                        {product.stock}
+                                    </span>
+                                </div>
+                            </td>
                             <td className="border border-gray-300 text-center">
                                 <button
                                     onClick={() => router.push(`/editProduct/${product.id}`)}
