@@ -74,11 +74,9 @@ export default function History() {
                             <select
                                 value={productFilter}
                                 onChange={(e) => setProductFilter(e.target.value)}
-                                className="border border-gray-300 outline-none p-2 rounded-md"
+                                className="border border-gray-300 outline-none p-1 rounded-md"
                             >
-                                <option
-                                    value=""
-                                >全て</option>
+                                <option value="">全て</option>
                                 {allProducts.map((product) => (
                                     <option
                                         key={product.id}
@@ -90,17 +88,11 @@ export default function History() {
                             <select
                                 value={typeFilter}
                                 onChange={(e) => setTypeFilter(e.target.value as TypeFilter)}
-                                className="border border-gray-300 outline-none p-2 rounded-md"
+                                className="border border-gray-300 outline-none p-1 rounded-md"
                             >
-                                <option
-                                    value="all"
-                                >全て</option>
-                                <option
-                                    value="arrival"
-                                >搬入</option>
-                                <option
-                                    value="shipment"
-                                >出荷</option>
+                                <option value="all">全て</option>
+                                <option value="arrival">搬入</option>
+                                <option value="shipment">出荷</option>
                             </select>
                         </div>
                     </div>
